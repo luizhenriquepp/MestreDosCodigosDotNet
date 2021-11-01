@@ -1,8 +1,9 @@
-﻿using System;
+﻿using LibConsole;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 
-namespace Exercicio1
+namespace Exercicio1_Calculadora
 {
     public class CentralDeOperacoes
     {
@@ -37,7 +38,7 @@ namespace Exercicio1
             int indiceMenuEscolhido;
             do
             {
-                indiceMenuEscolhido = RetornarIndiceMenuEscolhido();
+                indiceMenuEscolhido = ValidacaoEntradas<int>.RetornarValorValido("Digite o número do menu: ");
 
                 ExecutarAcaoMenuEscolhido(indiceMenuEscolhido);
             } while (indiceMenuEscolhido != _indiceSair);
@@ -64,14 +65,6 @@ namespace Exercicio1
 
             Console.WriteLine($"{_indiceParidade} - Verificação da paridade das entradas");
             Console.WriteLine($"{_indiceSair} - Sair");
-        }
-
-        private int RetornarIndiceMenuEscolhido()
-        {
-            Console.Write("Digite o número do menu: ");
-            int.TryParse(Console.ReadLine(), out int indiceMenuEscolhido);
-
-            return indiceMenuEscolhido;
         }
 
         private bool IndiceOpercaoMatematica(int indice) => 
@@ -114,7 +107,7 @@ namespace Exercicio1
 
         private void VerificarParidade(string rotuloValor, double valor)
         {
-            if (!Int32.TryParse(valor.ToString(), out var valorInt))
+            if (!int.TryParse(valor.ToString(), out var valorInt))
             {
                 Console.WriteLine($"{rotuloValor} ({valor}) não é inteiro");
                 return;
