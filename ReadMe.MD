@@ -1,15 +1,31 @@
 [1 - Perguntas teóricas de introdução]
 
 1.1 - Em quais linguagens o C# foi inspirado?
+Resposta: C# foi baseada na linguagem C++ e também possui alguns elementos do Object Pascal e Java.
+
 1.2 - Inicialmente o C# foi criado para qual finalidade?
+Resposta: O C# foi criado para o .NET. O objetivo era desprender o .NET de outras linguagens que limitavam o desenvolvimento da plataforma. A linguagem foi desenvolvida com o nome Cool, mas no lançamento do .NET mudaram o nome para C#.
+
 1.3 - Quais os principais motivos para a Microsoft ter migrado para o Core?
+Resposta: 
+- Permitir maior quantidade de ecossistemas para seus produtos: Windows, macOS e Linux;
+- Concorrer com o Java;
+- Busca constante pela evolução.
+
 1.4 - Cite as principais diferenças entre .Net Full Framework e .Net Core.
+Resposta: 
+- Core conta com a ajuda da comunidade;
+- Core é modular (recursos são adicionados com pacotes - nuget);
+- Core possibilita portabilidade para qualquer SO (Windows, Linux, Mac);
+- Core é um framework simplificado para web, microserviços e containers;
+- Não se pode desenvolver tudo o que existe no full no core, ele é mais "enxuto";
+- Core não necessita de uma IDE específica.
 
 [2 - Trabalhando no Console]
 
 Observações gerais:
 - A solução foi desenvolvida no Microsoft Visual Studio Community 2019;
-- Foi criado um projeto para cada exercício e também um projeto adicional LibConsole no qual foi centralizado o código de validação de input de dados e também de cálculos (na classe estática Calculadora) que são utilizados nos exercícios 1, 3, 5...
+- Foi criado um projeto para cada exercício e também um projeto adicional LibConsole no qual foi centralizado o código de validação de input de dados e também de cálculos (na classe estática Calculadora) que são utilizados, por exemplo, nos exercícios 1, 3 e 5.
 
 2.1 - Desenvolvido o Exercicio1-Calculadora.csproj na pasta "01-TrabalhandoNoConsole". Ao executar o console, serão questionados os valores A e B e logo após será exibido um menu com todas as opções disponíveis ao usuário. Pelo menu, o usuário poderá executar as operações matemáticas, verificar a paridade e também sair. Ao sair do menu, será questionado se o usuário deseja informar novos números e todo o processo se repetirá.
 
@@ -35,12 +51,29 @@ Obs: Como no enunciado do exercício havia a afirmação "Imprima todos os alunos c
 3.1 - Responda e demonstre no código os itens abaixo:
 
 - O que é POO?
+Resposta: POO é Programação orientada a objetos, um paradigma que a maioria das linguagens dão suporte e nos permite mapear os problemas do mundo real em aproximações ou abstrações utilizando conceitos de objetos, atributos, métodos etc.
+
 - O que é polimorfismo?
+Resposta: Um objeto pode assumir uma forma diferente em algumas ocasiões. No exercicio "Exercicio3-ContaBancaria", na classe Program, foi criado o método Depositar que recebe um parâmetro da classe base ContaBancaria. Em algumas ocasiões este método é chamado passando um objeto da classe filha ContaCorrente e em outras de outra classe filha ContaEspecial e quando é realizada a chamada "conta.Depositar" no interior do método é executado exatamente o código específico da classe correspondente. Isto é polimorfismo.
+
 - O que é abstração?
+Resposta: Declarar classes bases com atributos e métodos que são comuns é uma forma de abstrair a solução. No exercicio "Exercicio3-ContaBancaria", por exemplo, foi realizada uma abstração na classe ContaBancaria centralizando nela o que é comum para quaiquer tipos de contas como os atributos "número da conta" e "saldo" e métodos "depositar" e "sacar".
+
 - O que é encapsulamento?
+Resposta: O encapsulamento é esconder do mundo externo a lógica para resolver determinado problema e também proteger atributos para que códigos externos não o modifiquem de forma não segura. A propriedade Saldo da classe "ContaBancaria", por exemplo, só pode sofrer uma escrita direta por classes herdadas (protected), outras classes não podem escrever diretamente no saldo da conta.
+
 - Quando usar uma classe abstrata e quando devo usar uma interface?
+Resposta: Uma interface é utilizada como um contrato, fazemos injeção, por exemplo, por meio delas. Interfaces não contém nenhum código mas a partir do momento que uma classe implementa uma interface, todos os métodos devem ser implementados. Classes abstratas podem conter alguma lógica como na classe ContaBancaria que é abstrata e possui algumas validações que são utilizadas nas subclasses.
+
 - O que faz as interfaces IDisposable, IComparable, ICloneable e IEnumerable?
+Reposta:
+- IDisposable: Faz com que uma classe seja obrigada a implementar o Dispose(), útil para liberação de recursos quando o objeto perde seu escopo;
+- IComparable: Faz com que uma classe seja obrigada a implementar o CompareTo() para que seja possível classificar suas instâncias (uso do método Sort em uma coleção de instancias);
+- ICloneable: Faz com que uma classe seja obrigada a implementar o Clone() que permite retornar uma cópia da instancia atual do objeto;
+- IEnumerable: Faz com que uma classe seja obrigada a implementar o GetEnumerator() que permite que a coleção seja iterável.
+
 - Existe herança múltipla (de classes) em C#?
+Resposta: Não, porém uma classe pode implementar mais de uma interface simulando uma herança múltipla.
 
 3.2 - Desenvolvido o Exerccicio2-Pessoa na pasta "02-Utilizando POO". Ao executar o console, serão questionados os dados da pessoa e o objeto com os respectivos dados será instanciado. Os setters da classe de pessoa validam as entradas informadas. Ao final os dados são impressos com uma formatação determinada. 
 
@@ -62,3 +95,6 @@ Resposta: Seguem abaixo os principais e suas particularidades:
 E mais dois projetos em NUnit:
 - CalculoBhaskara.NUnit.Test: Realiza os testes unitários refente ao projeto do exercício 5 da seção "Trabalhando no Console";
 - ContaBancaria.NUnit.Test: Realiza os testes unitários refente ao projeto do exercício 3 da seção "Utilizando POO";
+
+[Exercicio bonus]
+O passo a passo foi evidenciado na pasta "Bonus-ExecutandoNoLinux".
