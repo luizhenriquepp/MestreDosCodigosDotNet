@@ -1,0 +1,10 @@
+{
+  "profiles": {
+    "Exercicio4-ControleRemoto": {
+      "commandName": "Project"
+    },
+    "Docker": {
+      "commandName": "Docker"
+    }
+  }
+}

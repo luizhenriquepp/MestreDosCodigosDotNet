@@ -1,0 +1,8 @@
+version: '3.4'
+
+services:
+  exercicio4-controleremoto:
+    image: ${DOCKER_REGISTRY-}exercicio4controleremoto
+    build:
+      context: .
+      dockerfile: Exercicio4-ControleRemoto/Dockerfile
