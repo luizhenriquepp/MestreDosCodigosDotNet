@@ -23,7 +23,7 @@ namespace Exercicio5_Bhaskara
             coeficienteC = ValidacaoEntradas<double>.RetornarValorValido("Digite o valor de c: ");
         }
 
-        static void ImprimirResultados(double delta, double raiz1, double raiz2)
+        static void ImprimirResultados(double delta, double? raiz1, double? raiz2)
         {
             if (delta < 0)
             {

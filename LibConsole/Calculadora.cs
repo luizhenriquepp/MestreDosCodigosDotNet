@@ -37,10 +37,10 @@ namespace LibConsole
             return valor % valorBase == 0;
         }
 
-        public static void CalcularRaizesBhaskara(double coeficienteA, double coeficienteB, double coeficienteC, out double delta, out double raiz1, out double raiz2)
+        public static void CalcularRaizesBhaskara(double coeficienteA, double coeficienteB, double coeficienteC, out double delta, out double? raiz1, out double? raiz2)
         {
-            raiz1 = 0;
-            raiz2 = 0;
+            raiz1 = null;
+            raiz2 = null;
             delta = Math.Pow(coeficienteB, 2) - 4 * coeficienteA * coeficienteC;
 
             if (delta < 0)

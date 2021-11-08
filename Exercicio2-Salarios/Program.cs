@@ -9,7 +9,15 @@ namespace Exercicio2_Salarios
     {
         static void Main()
         {
-            Dictionary<string, double> funcionarios = new Dictionary<string, double>();
+            var funcionarios = GetListaFuncionarios();
+
+            ImprimirEstatisticasSolucao1(funcionarios);
+            ImprimirEstatisticasSolucao2(funcionarios);
+        }
+
+        private static Dictionary<string, double> GetListaFuncionarios()
+        {
+            Dictionary<string, double> funcionarios = new Dictionary<string, double>(StringComparer.OrdinalIgnoreCase);
             var quantidadeFuncionarios = ValidacaoEntradas<int>.RetornarValorValido("Digite a quantidade de funcionários: ");
 
             int i = 0;
@@ -18,37 +26,38 @@ namespace Exercicio2_Salarios
                 var nome = ValidacaoEntradas<string>.RetornarValorValido($"Digite o nome do funcionário {i + 1}: ");
                 var salario = ValidacaoEntradas<double>.RetornarValorValido($"Digite o salário do funcionário {i + 1}: ");
 
-                funcionarios.Add(nome, salario);
-
-                i++;
+                if (AdicionarFuncionario(funcionarios, nome, salario))
+                    i++;
             }
 
-            ImprimirEstatisticasSolucao1(funcionarios);
-            ImprimirEstatisticasSolucao2(funcionarios);
+            return funcionarios;
+        }
+
+        private static bool AdicionarFuncionario(Dictionary<string, double> funcionarios, string nome, double salario)
+        {
+            try
+            {
+                funcionarios.Add(nome, salario);
+                return true;
+            }
+            catch
+            {
+                Console.WriteLine("Funcionário já informado anteriormente. Digite novamente os dados do novo funcionário.");
+                return false;
+            }
         }
 
         private static void ImprimirEstatisticasSolucao1(Dictionary<string, double> funcionarios)
         {
             Console.WriteLine("Solução 1");
 
-            if (funcionarios.Count == 0)
+            var funcionarioMenorSalario = CalculoSalario.GetFuncionarioComMenorSalario(funcionarios.ToList());
+            var funcionarioMaiorSalario = CalculoSalario.GetFuncionarioComMaiorSalario(funcionarios.ToList());
+
+            if (funcionarioMenorSalario is null)
             {
                 Console.WriteLine("Lista de funcionários vazia");
                 return;
-            }
-
-            var funcionarioMenorSalario = funcionarios.ElementAt(0);
-            var funcionarioMaiorSalario = funcionarios.ElementAt(0);
-
-            for (int i = 1; i < funcionarios.Count; i++)
-            {
-                var funcionario = funcionarios.ElementAt(i);
-
-                if (funcionario.Value < funcionarioMenorSalario.Value)
-                    funcionarioMenorSalario = funcionario;
-
-                if (funcionario.Value > funcionarioMaiorSalario.Value)
-                    funcionarioMaiorSalario = funcionario;
             }
 
             Console.WriteLine($"Menor salário: {funcionarioMenorSalario}");
